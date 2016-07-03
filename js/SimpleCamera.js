@@ -1,16 +1,16 @@
 /* =========================================================== *
- * @site http:tt-cc.cn
- * @email mvpjly@163.com
- * Copyright 2014 imwr
+ * @site http://tt-cc.cn
+ * @email ttccmvp@gmail.com
+ * Copyright 2016 ttcc
  * Licensed under the Apache License, Version 2.0 (the "License")
  * =========================================================== */
 ;
 (function ($) {
     var defaults = {
-        width: 280,//摄像头宽
-        height: 320,//摄像头高
-        photoW: 280,//摄像头宽
-        photoH: 320,//摄像头高
+        width: 280,//容器宽
+        height: 320,//容器高
+        photoW: 280,//图片宽
+        photoH: 320,//图片高
         taketext: "拍照",//拍照按钮文字
         savetext: "保存",//保存按钮文字
         canceltext: "取消",
@@ -52,6 +52,7 @@
             var container = document.createElement("div");
             this.ele.append(container);
             container.className = "simple-camera-container";
+            container.style.cssText = "position:relative;margin:o auto;width:" + this.options.width;
             var div = document.createElement("div");
             div.style.cssText = "position:relative;top:0;left:0;overflow:hidden;" +
                 "width:" + this.options.width + "px;height:" + this.options.height + "px";
@@ -64,7 +65,8 @@
             this.canvas.height = this.height = this.options.height;
             div.appendChild(this.canvas);
             this.result = document.createElement("div");
-            this.result.style.cssText = "display:none;z-index:4;position: absolute; left: 34%;" +
+            this.result.style.cssText = "background: rgba(17, 17, 17,0.8);border: 1px solid;color: white;" +
+                "width: 100px;display:none;z-index:4;position: absolute; left: " + (this.options.width / 2 - 50) + "px;" +
                 "background: #111;padding: 5px 20px; border-radius: 6px;top:" + (this.options.height / 2 - 30) + "px";
             div.appendChild(this.result);
             var handle = document.createElement("div");
@@ -114,7 +116,8 @@
                     img = new Image();
                     img.src = image;
                     var w = window.open('about:blank', 'image from canvas');
-                    w.document.write("<img src='" + image + "' alt='from canvas'/>");
+                    w.document.write("<img src='" + image + "' width='" + _this.options.width
+                        + "' height='" + _this.options.height + "' alt='from canvas'/>");
                 } else if (_this.options.doImage.length > 0) {
                     img = Canvas2Image.convertToImage(_this.canvas, _this.options.photoW, _this.options.photoH, "png")
                     _this.options.doImage[0].appendChild(img);

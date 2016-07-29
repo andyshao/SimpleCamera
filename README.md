@@ -10,5 +10,5 @@
 ![image](snapshot/test.png)
 
 ###demo###
-See [here](http://tt-cc.cn/front-end/jquery-plugins/ninebox)
+See [here](http://tt-cc.cc/front-end/jquery-plugins/ninebox)
 -->
